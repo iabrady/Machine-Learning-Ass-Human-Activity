@@ -141,34 +141,6 @@ Balanced Accuracy      0.9932   0.9842   0.9955   0.9870   0.9710
 ![Confusion Matrix](ConfusionMatrixHeatmap.png)
 
 
-### Predicting against the assignment test data
-
-```{r,eval=FALSE}
-      # get the test data and select the same subset of predictors
-tst.data <- read.csv(tst.file, header=TRUE, sep=",", stringsAsFactors=FALSE)
-tdata <- select(tst.data, 7:11, 37:49, 60:68, 84:86, 102, 113:124, 140, 151:159)
-
-```
-
-```{r, eval=FALSE}
-tdata$classe <- as.factor(tdata$classe)
-      # Do the prediction against the boost model and suggested no of trees
-predt <- predict(boost.data, newdata=tdata, n.trees=10000 )
-```
-
-```{r}
-
-      # and now turn numerics back to te alphabetic labels.
-predt2<- round(predt)
-predt.c <- as.character(predt2)
-predt.c <- sub("1","A", predt.c)
-predt.c <- sub("2","B", predt.c)
-predt.c <- sub("3","C", predt.c)
-predt.c <- sub("4","D", predt.c)
-predt.c <- sub("5","E", predt.c)
-table(predt.c)
-
-```
 
 # Appendix
 ## Relative Influence of Predictors
